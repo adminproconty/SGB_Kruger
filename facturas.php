@@ -34,31 +34,22 @@
     <div class="container">
 		<div class="panel panel-info">
 		<div class="panel-heading">
-		    <div class="btn-group pull-right">
-				<a  href="nueva_factura.php" class="btn btn-info"><span class="glyphicon glyphicon-plus" ></span> Nuevo Consumo</a>
-			</div>
-			<h4><i class='glyphicon glyphicon-search'></i> Buscar Consumo</h4>
+
+			<h4><i class='glyphicon glyphicon-search'></i> Registrar Consumo</h4>
 		</div>
 			<div class="panel-body">
-				<form class="form-horizontal" role="form" id="datos_cotizacion">
 				
+				<form class="form-horizontal" method="post" id="consumos" name="consumos">
 						<div class="form-group row">
-							<label for="q" class="col-md-2 control-label">Cliente o # de Consumo</label>
+							<label for="q" class="col-md-2 control-label">Documento</label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="q" placeholder="Nombre del cliente o # de Consumo" onkeyup='load(1);'>
+								<input type="text" class="form-control" id="q" onkeyup='load(1);'>
 							</div>
 							
-							
-							
-							<div class="col-md-3">
-								<button type="button" class="btn btn-default" onclick='load(1);' style="display: none;">
-									<span class="glyphicon glyphicon-search" ></span> Buscar</button>
-								<span id="loader"></span>
-							</div>
-							
+						
 						</div>
 				
-				
+
 				
 			</form>
 				<div id="resultados"></div><!-- Carga los datos ajax -->
@@ -72,6 +63,6 @@
 	include("footer.php");
 	?>
 	<script type="text/javascript" src="js/VentanaCentrada.js"></script>
-	<script type="text/javascript" src="js/facturas.js"></script>
+	<script type="text/javascript" src="js/consumos.js"></script>
   </body>
 </html>

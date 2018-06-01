@@ -23,6 +23,7 @@
 			function eliminar (id)
 		{
 			var q= $("#q").val();
+
 		if (confirm("Realmente deseas eliminar el usuario")){	
 		$.ajax({
         type: "GET",
