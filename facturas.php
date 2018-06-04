@@ -38,31 +38,39 @@
 			<h4><i class='glyphicon glyphicon-search'></i> Registrar Consumo</h4>
 		</div>
 			<div class="panel-body">
-				
+			<?php
+                  
+            ?>
 				<form class="form-horizontal" method="post" id="consumos" name="consumos">
 						<div class="form-group row">
 							<label for="q" class="col-md-2 control-label">Documento</label>
 							<div class="col-md-5">
-								<input type="text" class="form-control" id="q" onkeyup='load(1);'>
+								<input type="text" class="form-control" id="q" onkeyup='load(1);' autofocus autocomplete="off">
 							</div>
-							
-						
+							<div class="col-md-3">
+							<button type="button" class="btn btn-default" onclick='load(1);' style="display: none;">
+							<span class="glyphicon glyphicon-search" ></span> Buscar</button>
+							<span id="loader"></span>
 						</div>
-				
-
-				
+						</div>
+						
 			</form>
+			
+			<div class="for-group row" id="form_mensajes">
+				<div id="mensajes"></div><!-- Carga los datos ajax --> 
+            </div>
+			
+			
 				<div id="resultados"></div><!-- Carga los datos ajax -->
 				<div class='outer_div'></div><!-- Carga los datos ajax -->
 			</div>
 		</div>	
-		
 	</div>
 	<hr>
 	<?php
 	include("footer.php");
 	?>
-	<script type="text/javascript" src="js/VentanaCentrada.js"></script>
+	<!-- <script type="text/javascript" src="js/VentanaCentrada.js"></script> -->
 	<script type="text/javascript" src="js/consumos.js"></script>
   </body>
 </html>

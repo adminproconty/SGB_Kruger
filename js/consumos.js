@@ -6,7 +6,7 @@ function load(page){
     var q= $("#q").val();
     $("#loader").fadeIn('slow');
     $.ajax({
-        url:'./ajax/buscar_clientes.php?action=ajax&page='+page+'&q='+q,
+        url:'./ajax/buscar_consumos.php?action=ajax&page='+page+'&q='+q,
          beforeSend: function(objeto){
          $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
       },
@@ -16,30 +16,35 @@ function load(page){
             
         }
     })
+   
 }
 
 
 
-    function eliminar (id)
-{
-    var q= $("#q").val();
-if (confirm("Realmente deseas eliminar el cliente")){	
-$.ajax({
-type: "GET",
-url: "./ajax/buscar_clientes.php",
-data: "id="+id,"q":q,
- beforeSend: function(objeto){
-    $("#resultados").html("Mensaje: Cargando...");
-  },
-success: function(datos){
-$("#resultados").html(datos);
-load(1);
-}
-    });
-}
-}
+    function eliminar (id){
+        var q= $("#q").val();
+        if (confirm("Realmente deseas eliminar el consumo")){	
+        $.ajax({
+        type: "GET",
+        url: "./ajax/buscar_consumos.php",
+        data: "id="+id,"q":q,
+        beforeSend: function(objeto){
+            $("#form_mensajes").html("Mensaje: Cargando...");
+        },
+        success: function(datos){
+        $("#form_mensajes").html(datos);
+        load(1);
+        }
+            });
+        }
+        setTimeout("remueve(0)", 3000 );
+    }
 
-
+    function remueve (id){
+        $("#form_mensajes").hide("slow");  
+        $("#form_mensajes").html("");
+        $("#form_mensajes").show("fast");
+    }
 
 $( "#consumos" ).submit(function( event ) {
     var documento = $("#q").val();
@@ -49,14 +54,16 @@ $( "#consumos" ).submit(function( event ) {
         url: "ajax/nuevo_consumo.php",
         data: "q="+documento,
         beforeSend: function(objeto){
-            $("#resultados").html("Mensaje: Cargando...");
+            $("#form_mensajes").html("Mensaje: Cargando...");
         },
         success: function(datos){
-        $("#resultados").html(datos);
+        $("#form_mensajes").html(datos);
         $('#guardar_datos').attr("disabled", false);
         load(1);
     }
     });
+    setTimeout("remueve(0)", 3000 );
+    $("#q").val("");
     event.preventDefault();
 })
 
