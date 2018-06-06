@@ -24,6 +24,7 @@
 	{
 		$nombre_cliente=$row['nombre_cliente'];
 		$fecha_consumo=$row['fecha_consumo'];
+		$menu_cliente=$row['menu_cliente'];
 	}
 ?>
 
@@ -47,17 +48,26 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1">Nombre: <?php echo $nombre_cliente ?></FONT>
+					<FONT FACE="Arial" SIZE="1">Buen Provecho!!</FONT>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<FONT FACE="Arial" SIZE="1"><?php echo $nombre_cliente ?></FONT>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<FONT FACE="Arial" SIZE="1">Menú: <?php echo $menu_cliente ?></FONT>
+					</td>
+				</tr>
+				<tr>
+					<td>
+					<FONT FACE="Arial" SIZE="1"><?php echo $fecha_consumo ?></FONT>
 					</td>
 				</tr>
 
-			<table style="width: 100%;">
-				<tr>
-					<td>
-						<FONT FACE="Arial" SIZE="1">--------------------------------------------------------</FONT>
-					</td>
-				</tr>
-			</table>
+			
 		</body>
 	</html>
 
