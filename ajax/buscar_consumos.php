@@ -6,12 +6,18 @@
 	require_once ("../config/conexion.php");//Contiene funcion que conecta a la base de datos
 	$action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 	if (isset($_GET['id'])){
+		//obtengo usuario
+		$sql_usuario=mysqli_query($con,"select * from users where user_id = ".$_SESSION['user_id']." order by lastname");
+            while ($rw=mysqli_fetch_array($sql_usuario)){
+				   $user_name=$rw["user_name"];
+			}
+		$fecha_cambio=date('Y-m-d H:i:s');
 		$fecha_hoy=date("Y-m-d");
 		$id_cliente=intval($_GET['id']);
 		$query=mysqli_query($con, "select * from clientes where id_cliente='".$id_cliente."'");
 		$count=mysqli_num_rows($query);
 		if ($count>0){
-			if ($delete1=mysqli_query($con,"UPDATE clientes SET `fec_real_consumo`= '' WHERE id_cliente='".$id_cliente."' and date_format(fec_real_consumo,'%Y-%m-%d') = '$fecha_hoy'")){
+			if ($delete1=mysqli_query($con,"UPDATE consumos_diarios SET `fecha_cambio`= '$fecha_cambio',`estado`= 0,`user_cambio`= '$user_name' WHERE id_cliente='".$id_cliente."'")){
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -22,7 +28,7 @@
 				?>
 				<div class="alert alert-danger alert-dismissible" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<strong>Error!</strong> No se pudo eliminar el consumo. Contacte al Administrador.
+				<strong>Error!</strong> No se pudo eliminar el consumo. Contacte al Administrador.<?php echo($id_cliente) ?>
 				</div>
 				<?php
 			}
@@ -63,14 +69,16 @@
 		$offset = ($page - 1) * $per_page;
 		//Count the total number of row in your table*/
 		$fecha_hoy=date("Y-m-d");
-		$count_query   = mysqli_query($con, "SELECT COUNT(*) as numrows FROM  clientes where date_format(fec_real_consumo,'%Y-%m-%d') = '$fecha_hoy'");
+		$count_query   = mysqli_query($con, "SELECT COUNT(*) as numrows FROM  consumos_diarios where date_format(fecha_consumo,'%Y-%m-%d') = '$fecha_hoy' and estado = 1");
 		$row= mysqli_fetch_array($count_query);
 		$numrows = $row['numrows'];
 		$total_pages = ceil($numrows/$per_page);
 		$reload = './facturas.php';
+			   
+		
 		//main query to fetch the data
 		
-		$sql="SELECT * FROM  clientes where date_format(fec_real_consumo,'%Y-%m-%d') = '$fecha_hoy'  ORDER BY fec_real_consumo DESC LIMIT $offset,$per_page";
+		$sql="SELECT b.id_cliente, a.nombre_cliente, a.documento_cliente, a.menu_cliente, b.fecha_consumo FROM  consumos_diarios b, clientes a where a.id_cliente = b.id_cliente and date_format(b.fecha_consumo,'%Y-%m-%d') = '$fecha_hoy'  and b.estado = 1 ORDER BY b.fecha_consumo DESC LIMIT $offset,$per_page";
 		$query = mysqli_query($con, $sql);
 		//loop through fetched data
 		if ($numrows>0){
@@ -93,7 +101,7 @@
 						$nombre_cliente=$row['nombre_cliente'];
 						$documento_cliente=$row['documento_cliente'];
 						$menu_cliente=$row['menu_cliente'];
-						$fec_real_consumo=$row['fec_real_consumo'];
+						$fec_real_consumo=$row['fecha_consumo'];
 					?>
 					<input type="hidden" value="<?php echo $nombre_cliente;?>" id="nombre_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $documento_cliente;?>" id="documento_cliente<?php echo $id_cliente;?>">
@@ -108,7 +116,7 @@
 						<td><?php echo $fec_real_consumo;?></td>
 						
 						<td ><span class="pull-right">
-						<a href="#" class='btn btn-default' title='Editar cliente' onclick="obtener_datos('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
+						
 						<a href="#" class='btn btn-default' title='Borrar cliente' onclick="eliminar('<?php echo $id_cliente; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
 					</tr>
 					<?php

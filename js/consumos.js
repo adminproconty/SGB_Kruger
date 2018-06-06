@@ -67,25 +67,43 @@ $( "#consumos" ).submit(function( event ) {
     event.preventDefault();
 })
 
-$( "#editar_cliente" ).submit(function( event ) {
-$('#actualizar_datos').attr("disabled", true);
 
-var parametros = $(this).serialize();
-$.ajax({
-    type: "POST",
-    url: "ajax/editar_cliente.php",
-    data: parametros,
-     beforeSend: function(objeto){
-        $("#resultados_ajax2").html("Mensaje: Cargando...");
-      },
-    success: function(datos){
-    $("#resultados_ajax2").html(datos);
-    $('#actualizar_datos').attr("disabled", false);
-    load(1);
-  }
-});
-event.preventDefault();
+
+
+$( "#editar_cliente" ).submit(function( event ) {
+    $('#actualizar_datos').attr("disabled", true);
+
+    var parametros = $(this).serialize();
+    $.ajax({
+        type: "POST",
+        url: "ajax/editar_cliente.php",
+        data: parametros,
+        beforeSend: function(objeto){
+            $("#resultados_ajax2").html("Mensaje: Cargando...");
+        },
+        success: function(datos){
+        $("#resultados_ajax2").html(datos);
+        $('#actualizar_datos').attr("disabled", false);
+        load(1);
+    }
+    });
+    event.preventDefault();
 })
+
+
+
+function imprimir_facturadesdejs(id_factura){
+    var mywindow = window.open('', 'recibo', 'height=400,width=600');
+    mywindow.document.write('<html><head><title>Consumo</title>');
+    /*optional stylesheet*/ //mywindow.document.write('<link rel="stylesheet" href="main.css" type="text/css" />');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write("CHRISTIAN TERAN");
+    mywindow.document.write("MENU 1");
+    mywindow.document.write('</body></html>');
+    mywindow.print();
+    mywindow.close();
+}
+
 
 function obtener_datos(id){
     var codigo = $("#codigo"+id).val();
@@ -110,6 +128,7 @@ function obtener_datos(id){
     $("#mod_empresa").val(empresa_cliente);
 
 }
+
 
 
 
