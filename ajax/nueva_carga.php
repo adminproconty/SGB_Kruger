@@ -17,8 +17,8 @@
 
 		//$sql="INSERT INTO clientes (nombre_cliente, documento_cliente, telefono_cliente, email_cliente, direccion_cliente, status_cliente, date_added, codigo, saldo_cliente, empresa_cliente) VALUES ('$nombre','$documento_cliente','$telefono','$email','$direccion','$estado','$date_added','$codigo','$saldo','$empresa_cliente')";
 		$sql="
-		INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `codigo`, `saldo_cliente`, `empresa_cliente`, `fec_consumo`, `menu_cliente`,`id_carga`) 
-		VALUES ('$nombre','$documento_cliente','','','','','$date_added','','0','','$fecha_consumo','$menu_cliente','0')
+		INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `codigo`, `saldo_cliente`, `empresa_cliente`, `fec_consumo`, `menu_cliente`) 
+		VALUES ('$nombre','$documento_cliente','','','','','$date_added','','0','','$fecha_consumo','$menu_cliente')
 		";
 		$query_new_insert = mysqli_query($con,$sql);
 			if ($query_new_insert){

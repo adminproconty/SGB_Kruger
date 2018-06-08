@@ -37,7 +37,7 @@
 				function imprimir() {
 					if (window.print) {
 						window.print();
-						//window.location.href = "../../nueva_factura.php"
+						window.location.href = "../../facturas.php"
 					} else {
 						alert("La función de impresion no esta soportada por su navegador.");
 					}

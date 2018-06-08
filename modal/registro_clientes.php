@@ -13,12 +13,7 @@
 		  <div class="modal-body">
 			<form class="form-horizontal" method="post" id="guardar_cliente" name="guardar_cliente">
 			<div id="resultados_ajax"></div>
-			  <div class="form-group">
-				<label for="codigo" class="col-sm-3 control-label">Código</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="codigo" name="codigo" required>
-				</div>
-			  </div>
+			  
 			  <div class="form-group">
 				<label for="nombre" class="col-sm-3 control-label">Nombre</label>
 				<div class="col-sm-8">
@@ -26,67 +21,24 @@
 				</div>
 			  </div>
 			  <div class="form-group">
-				<label for="documento" class="col-sm-3 control-label">Cédula</label>
+				<label for="documento_cliente" class="col-sm-3 control-label">Cédula</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="documento" name="documento" >
+				  <input type="text" class="form-control" id="documento_cliente" name="documento_cliente" required>
 				</div>
 			  </div>
 			  <div class="form-group">
-				<label for="telefono" class="col-sm-3 control-label">Teléfono</label>
+				<label for="menu_cliente" class="col-sm-3 control-label">Menú</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="telefono" name="telefono" >
+				  <input type="text" class="form-control" id="menu_cliente" name="menu_cliente" required>
 				</div>
 			  </div>
-			  
-			  <div class="form-group">
-				<label for="email" class="col-sm-3 control-label">Email</label>
+				<div class="form-group">			  
+			  <label for="fecha_consumo" class="col-sm-3 control-label">Fecha a Consumir</label>
 				<div class="col-sm-8">
-					<input type="email" class="form-control" id="email" name="email" >
-				  
+				  <input type="date" class="form-control" id="fecha_consumo" name="fecha_consumo" required>
 				</div>
 			  </div>
-			  
-			  <div class="form-group">
-				<label for="direccion" class="col-sm-3 control-label">Dirección</label>
-				<div class="col-sm-8">
-					<textarea class="form-control" id="direccion" name="direccion"   maxlength="255" ></textarea>
-				  
-				</div>
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="saldo" class="col-sm-3 control-label">Cupo</label>
-				<div class="col-sm-8">
-					<input type="number" class="form-control" id="saldo" name="saldo" >
-				  
-				</div>
-			  </div>
-			  
-				<div class="form-group">
-				<label for="empresa" class="col-sm-3 control-label">Empresa</label>
-				<div class="col-sm-8">
-				 <select class="form-control" id="empresa" name="empresa" required>
-					<option value="" selected>-- Selecciona Empresa --</option>
-					<option value="Asur">Asur</option>
-					<option value="Ecuabamba">Ecuabamba</option>
-					<option value="Corposur">Corposur</option>
-					<option value="Andares">Andares</option>
-				  </select>
-				</div>
-			  </div>
-
-			  <div class="form-group">
-				<label for="estado" class="col-sm-3 control-label">Estado</label>
-				<div class="col-sm-8">
-				 <select class="form-control" id="estado" name="estado" required>
-					<option value="">-- Selecciona estado --</option>
-					<option value="1" selected>Activo</option>
-					<option value="0">Inactivo</option>
-				  </select>
-				</div>
-			  </div>
-			 
-			 
+				
 			 
 			
 		  </div>

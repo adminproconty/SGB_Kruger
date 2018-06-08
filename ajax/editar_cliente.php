@@ -12,9 +12,9 @@
 
            $errors[] = "Nombre vacío";
 
-        }  else if ($_POST['mod_estado']==""){
+        }  else if ($_POST['mod_menu']==""){
 
-			$errors[] = "Selecciona el estado del cliente";
+			$errors[] = "Selecciona el menu del cliente";
 
 		}  else if (
 
@@ -22,7 +22,7 @@
 
 			!empty($_POST['mod_nombre']) &&
 
-			$_POST['mod_estado']!="" 
+			$_POST['mod_menu']!="" 
 
 		){
 
@@ -34,27 +34,14 @@
 
 		// escaping, additionally removing everything that could be (html/javascript-) code
 
-		$codigo=mysqli_real_escape_string($con,(strip_tags($_POST["mod_codigo"],ENT_QUOTES)));
-
-		$saldo=mysqli_real_escape_string($con,(strip_tags($_POST["mod_saldo"],ENT_QUOTES)));
-
 		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["mod_nombre"],ENT_QUOTES)));
-
-		$telefono=mysqli_real_escape_string($con,(strip_tags($_POST["mod_telefono"],ENT_QUOTES)));
-
-		$email=mysqli_real_escape_string($con,(strip_tags($_POST["mod_email"],ENT_QUOTES)));
-
-		$direccion=mysqli_real_escape_string($con,(strip_tags($_POST["mod_direccion"],ENT_QUOTES)));
-
-		$estado=intval($_POST['mod_estado']);
-
 		$documento=mysqli_real_escape_string($con,(strip_tags($_POST["mod_documento"],ENT_QUOTES)));
-
-		$empresa_cliente=mysqli_real_escape_string($con,(strip_tags($_POST["mod_empresa"],ENT_QUOTES)));
-
+		$estado=mysqli_real_escape_string($con,(strip_tags($_POST["mod_estado"],ENT_QUOTES)));
 		$id_cliente=intval($_POST['mod_id']);
+		$menu=mysqli_real_escape_string($con,(strip_tags($_POST["mod_menu"],ENT_QUOTES)));
+		$fecha=mysqli_real_escape_string($con,(strip_tags($_POST["mod_fecha"],ENT_QUOTES)));
 
-		$sql="UPDATE clientes SET nombre_cliente='".$nombre."', documento_cliente='".$documento."', telefono_cliente='".$telefono."', email_cliente='".$email."', direccion_cliente='".$direccion."', status_cliente='".$estado."' , saldo_cliente='".$saldo."' , empresa_cliente='".$empresa_cliente."' WHERE id_cliente='".$id_cliente."'";
+		$sql="UPDATE clientes SET nombre_cliente='".$nombre."', documento_cliente='".$documento."', menu_cliente='".$menu."', fec_consumo='".$fecha."'  WHERE id_cliente='".$id_cliente."'";
 
 		$query_update = mysqli_query($con,$sql);
 
@@ -68,11 +55,11 @@
 
 			}
 
-		} else {
+			} else {
 
-			$errors []= "Error desconocido.";
+				$errors []= "Error desconocido.";
 
-		}
+			}
 
 		
 

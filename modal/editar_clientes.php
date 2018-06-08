@@ -13,12 +13,7 @@
 		  <div class="modal-body">
 			<form class="form-horizontal" method="post" id="editar_cliente" name="editar_cliente">
 			<div id="resultados_ajax2"></div>
-			  <div class="form-group">
-				<label for="mod_codigo" class="col-sm-3 control-label">Código</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="mod_codigo" name="mod_codigo" readonly>
-				</div>
-			  </div>
+			  
 			  <div class="form-group">
 				<label for="mod_nombre" class="col-sm-3 control-label">Nombre</label>
 				<div class="col-sm-8">
@@ -29,62 +24,27 @@
 			  <div class="form-group">
 				<label for="mod_documento" class="col-sm-3 control-label">Cédula</label>
 				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="mod_documento" name="mod_documento">
-				</div>
-			  </div>
-			   <div class="form-group">
-				<label for="mod_telefono" class="col-sm-3 control-label">Teléfono</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="mod_telefono" name="mod_telefono">
+				  <input type="text" class="form-control" id="mod_documento" name="mod_documento" required>
 				</div>
 			  </div>
 			  
 			  <div class="form-group">
-				<label for="mod_email" class="col-sm-3 control-label">Email</label>
+				<label for="mod_menu" class="col-sm-3 control-label">Menú</label>
 				<div class="col-sm-8">
-				 <input type="email" class="form-control" id="mod_email" name="mod_email">
-				</div>
-			  </div>
-			  <div class="form-group">
-				<label for="mod_direccion" class="col-sm-3 control-label">Dirección</label>
-				<div class="col-sm-8">
-				  <textarea class="form-control" id="mod_direccion" name="mod_direccion" ></textarea>
-				</div>
-			  </div>
-			  
-			  <div class="form-group">
-				<label for="mod_saldo" class="col-sm-3 control-label">Cupo</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="mod_saldo" name="mod_saldo" required pattern="^[0-9]{1,5}(\.[0-9]{0,2})?$" title="Ingresa sólo números con 0 ó 2 decimales" maxlength="8">
-				  
-				</div>
-			  </div>
-			  
-				<div class="form-group">
-				<label for="mod_empresa" class="col-sm-3 control-label">Empresa</label>
-				<div class="col-sm-8">
-				 <select class="form-control" id="mod_empresa" name="mod_empresa" required>
-					<option value="">-- Selecciona Empresa --</option>
-					<option value="Asur" selected>Asur</option>
-					<option value="Ecuabamba">Ecuabamba</option>
-					<option value="Corposur">Corposur</option>
-					<option value="Andares">Andares</option>
-				  </select>
+				 <input type="text" class="form-control" id="mod_menu" name="mod_menu" required>
 				</div>
 			  </div>
 
-			  <div class="form-group">
-				<label for="mod_estado" class="col-sm-3 control-label">Estado</label>
+				<div class="form-group">
+				<label for="mod_fecha" class="col-sm-3 control-label">Fecha a Consumir</label>
 				<div class="col-sm-8">
-				 <select class="form-control" id="mod_estado" name="mod_estado" required>
-					<option value="">-- Selecciona estado --</option>
-					<option value="1" selected>Activo</option>
-					<option value="0">Inactivo</option>
-				  </select>
+				 <input type="date" class="form-control" id="mod_fecha" name="mod_fecha" required>
 				</div>
 			  </div>
-			 
-			 
+
+			  
+			  
+			  
 			 
 			
 		  </div>

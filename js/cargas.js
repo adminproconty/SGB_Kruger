@@ -6,7 +6,7 @@
 			var q= $("#q").val();
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'./ajax/buscar_clientes.php?action=ajax&page='+page+'&q='+q,
+				url:'./ajax/buscar_cargas.php?action=ajax&page='+page+'&q='+q,
 				 beforeSend: function(objeto){
 				 $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
 			  },
@@ -26,10 +26,10 @@
 		if (confirm("Realmente deseas eliminar el cliente")){	
 		$.ajax({
         type: "GET",
-        url: "./ajax/buscar_clientes.php",
+        url: "./ajax/buscar_cargas.php",
         data: "id="+id,"q":q,
 		 beforeSend: function(objeto){
-			$("#resultados").html("Mensaje: Cargando...");
+			$("#resultados").html('<img src="./img/ajax-loader.gif"> Cargando...');
 		  },
         success: function(datos){
 		$("#resultados").html(datos);
@@ -41,16 +41,16 @@
 		
 		
 	
-$( "#guardar_cliente" ).submit(function( event ) {
+$( "#guardar_carga" ).submit(function( event ) {
   $('#guardar_datos').attr("disabled", true);
   
  var parametros = $(this).serialize();
 	 $.ajax({
 			type: "POST",
-			url: "ajax/nuevo_cliente.php",
+			url: "ajax/nueva_carga.php",
 			data: parametros,
 			 beforeSend: function(objeto){
-				$("#resultados_ajax").html("Mensaje: Cargando...");
+				$("#resultados_ajax").html('<img src="./img/ajax-loader.gif"> Cargando...');
 			  },
 			success: function(datos){
 			$("#resultados_ajax").html(datos);
@@ -70,7 +70,7 @@ $( "#editar_cliente" ).submit(function( event ) {
 			url: "ajax/editar_cliente.php",
 			data: parametros,
 			 beforeSend: function(objeto){
-				$("#resultados_ajax2").html("Mensaje: Cargando...");
+				$("#resultados_ajax2").html('<img src="./img/ajax-loader.gif"> Cargando...');
 			  },
 			success: function(datos){
 			$("#resultados_ajax2").html(datos);

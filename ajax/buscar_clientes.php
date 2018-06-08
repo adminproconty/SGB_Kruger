@@ -90,7 +90,7 @@
 
 		 $aColumns = array('codigo', 'nombre_cliente','documento_cliente');//Columnas de busqueda
 
-		 $sTable = "clientes";
+		 $sTable = "clientes cli";
 
 		 $sWhere = "";
 
@@ -142,7 +142,11 @@
 
 		//main query to fetch the data
 
-		$sql="SELECT * FROM  $sTable $sWhere LIMIT $offset,$per_page";
+		$sql="SELECT cli.*, 
+		(select co.estado from consumos_diarios co where co.id_cliente = cli.id_cliente and co.estado = 1 ) as estado,
+		(select co.fecha_consumo from consumos_diarios co where co.id_cliente = cli.id_cliente and co. estado = 1) as fecha_consumo
+	   FROM  $sTable $sWhere LIMIT $offset,$per_page";
+
 
 		$query = mysqli_query($con, $sql);
 
@@ -160,17 +164,19 @@
 
 				<tr  class="info">
 
-					<th>Código</th>
+					<th>Id</th>
 
 					<th>Nombre</th>
 
 					<th>Cedula</th>
 
-					<th>Dirección</th>
+					<th>Menú</th>
+
+					<th>Fec. a Consumir</th>
+					
+					<th>Fec.Consumo</th>
 
 					<th>Estado</th>
-
-					<th>Cupo</th>
 
 					<th class='text-right'>Acciones</th>
 
@@ -182,51 +188,28 @@
 
 				while ($row=mysqli_fetch_array($query)){
 
-						$codigo=$row['codigo'];
-
 						$id_cliente=$row['id_cliente'];
-
-						$telefono_cliente=$row['telefono_cliente'];
-
 						$nombre_cliente=$row['nombre_cliente'];
-
-						$email_cliente=$row['email_cliente'];
-
 						$documento_cliente=$row['documento_cliente'];
-
-						$direccion_cliente=$row['direccion_cliente'];
-
-						$status_cliente=$row['status_cliente'];
-
-						$saldo_cliente=$row['saldo_cliente'];
-
-						if ($status_cliente==1){$estado="Activo";$label_class='label-success';}
-
-						else {$estado="Inactivo";$label_class='label-danger';}
-
-						$empresa_cliente=$row['empresa_cliente'];
-
+						$estado=$row['estado'];
+						$estado_ori=$row['estado'];
+						if ($estado==0){$estado="Sin Consumir";$label_class='label-success';}
+						else {$estado="Consumido";$label_class='label-danger';}
+						$menu_cliente=$row['menu_cliente'];
+						$fecha_consumo=$row['fecha_consumo'];
+						$a_consumir=$row['fec_consumo'];
+						
 					?>
 
 					
 
-					<input type="hidden" value="<?php echo $codigo;?>" id="codigo<?php echo $id_cliente;?>">
-
+					<input type="hidden" value="<?php echo $id_cliente;?>" id="id_cliente<?php echo $id_cliente;?>">
 					<input type="hidden" value="<?php echo $nombre_cliente;?>" id="nombre_cliente<?php echo $id_cliente;?>">
-
-					<input type="hidden" value="<?php echo $telefono_cliente;?>" id="telefono_cliente<?php echo $id_cliente;?>">
-
-					<input type="hidden" value="<?php echo $email_cliente;?>" id="email_cliente<?php echo $id_cliente;?>">
-
 					<input type="hidden" value="<?php echo $documento_cliente;?>" id="documento_cliente<?php echo $id_cliente;?>">
-
-					<input type="hidden" value="<?php echo $direccion_cliente;?>" id="direccion_cliente<?php echo $id_cliente;?>">
-
-					<input type="hidden" value="<?php echo $status_cliente;?>" id="status_cliente<?php echo $id_cliente;?>">
-
-					<input type="hidden" value="<?php echo $saldo_cliente;?>" id="saldo_cliente<?php echo $id_cliente;?>">
-
-					<input type="hidden" value="<?php echo $empresa_cliente;?>" id="empresa_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $estado;?>" id="estado<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $menu_cliente;?>" id="menu_cliente<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $fecha_consumo;?>" id="fecha_consumo<?php echo $id_cliente;?>">
+					<input type="hidden" value="<?php echo $a_consumir;?>" id="a_consumir<?php echo $id_cliente;?>">
 
 					
 
@@ -234,25 +217,35 @@
 
 						
 
-						<td><?php echo $codigo; ?></td>
-
+						<td><?php echo $id_cliente; ?></td>
 						<td><?php echo $nombre_cliente; ?></td>
-
 						<td><?php echo $documento_cliente;?></td>
-
-						<td><?php echo $direccion_cliente;?></td>
-
+						<td><?php echo $menu_cliente;?></td>
+						<td><?php echo $a_consumir;?></td>
+						<td><?php echo $fecha_consumo;?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $estado; ?></span></td>
-
-						<td><?php echo "$";?><span class='pull-right'><?php echo number_format($saldo_cliente,2);?></span></td>
+						
+						
 
 					<td ><span class="pull-right">
 
+<?php
+
+					if($estado_ori == 0){
+
+?>
+
 					<a href="#" class='btn btn-default' title='Editar cliente' onclick="obtener_datos('<?php echo $id_cliente;?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
-
+<!--
 					<a href="#" class='btn btn-default' title='Borrar cliente' onclick="eliminar('<?php echo $id_cliente; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
-
+-->
 						
+<?php
+
+				}
+
+?>
+
 
 					</tr>
 
