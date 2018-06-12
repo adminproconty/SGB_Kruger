@@ -31,6 +31,7 @@
 			<li class="<?php echo $active_cargas;?>"><a href="cargas.php"><i class='glyphicon glyphicon-cloud-upload'></i> Cargas</a></li>
 			<li class="<?php echo $active_reportes;?>"><a href="reportes.php"><i  class='glyphicon glyphicon-paste'></i> Reportes</a></li>
 			<li class="<?php if(isset($active_perfil)){echo $active_perfil;}?>"><a href="perfil.php"><i  class='glyphicon glyphicon-cog'></i> Configuración</a></li>
+			<li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
 
 <!--
 			<li class="<?php echo $active_productos;?>"><a href="productos.php"><i class='glyphicon glyphicon-barcode'></i> Productos</a></li>
@@ -57,9 +58,22 @@
 
 		<?php
 
-		   } 
+			} elseif ($row2['perfil'] == "Supervisor") { 
+
 
 		?>	
+
+			<li class="<?php echo $active_facturas;?>"><a href="facturas.php"><i class='glyphicon glyphicon-list-alt'></i> Consumos <span class="sr-only">(current)</span></a></li>
+			<li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Clientes</a></li>
+			<li class="<?php echo $active_cargas;?>"><a href="cargas.php"><i class='glyphicon glyphicon-cloud-upload'></i> Cargas</a></li>
+			<li class="<?php echo $active_reportes;?>"><a href="reportes.php"><i  class='glyphicon glyphicon-paste'></i> Reportes</a></li>
+			<li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
+			
+			<?php
+
+} 
+
+?>
 
        </ul>
 
