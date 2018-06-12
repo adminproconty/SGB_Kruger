@@ -32,16 +32,13 @@
                 $buat_id   = str_pad($codigo, 6, "0", STR_PAD_LEFT);
                 $codigo = "C$buat_id";
                 ?>
-            
+            <!--
             <form class="form-horizontal" method="post" id="guardar_carga" name="guardar_carga">
-			<div id="resultados_ajax"></div>
+						-->
+						<form action="ajax/nueva_carga.php?act=insert" method='post' enctype="multipart/form-data" class="form-horizontal">
+							<div id="resultados_ajax"></div>
 		  
-            <div class="form-group">
-				<label for="nombre" class="col-sm-3 control-label">Nombre</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="nombre" name="nombre" required>
-				</div>
-			  </div>
+            
 
             <div class="form-group">
                 <label for="codigo" class="col-sm-3 control-label">Código Carga</label>

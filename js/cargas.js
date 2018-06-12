@@ -45,6 +45,8 @@ $( "#guardar_carga" ).submit(function( event ) {
   $('#guardar_datos').attr("disabled", true);
   
  var parametros = $(this).serialize();
+ var q= $("#codigo").val();
+ alert("codigo " + q);
 	 $.ajax({
 			type: "POST",
 			url: "ajax/nueva_carga.php",

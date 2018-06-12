@@ -82,6 +82,10 @@ $( "#editar_cliente" ).submit(function( event ) {
 })
 
 	function obtener_datos(id){
+
+		
+		$("#resultados_ajax2").html(''); //blanqueo mensaje de modal de edit cliente
+		
 			var nombre_cliente = $("#nombre_cliente"+id).val();
 			var documento_cliente = $("#documento_cliente"+id).val();
 			var estado = $("#estado"+id).val();

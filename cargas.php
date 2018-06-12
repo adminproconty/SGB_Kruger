@@ -53,7 +53,27 @@
                      </div>
                   </div>
                </form>
-               <div id="resultados"></div>
+<?php                 
+                if (empty($_GET['alert'])) {
+                  echo "";
+                } 
+                elseif ($_GET['alert'] == 1) {
+                    echo '<div class="alert alert-success" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>¡Bien hecho!</strong>
+                            El archivo fue subido con correctamente.
+                          </div>';
+                }
+                elseif ($_GET['alert'] == 2) {
+                    echo '<div class="alert alert-danger" role="alert">
+                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <strong>¡Error!</strong>
+                            Lo siento algo ha salido mal intenta nuevamente
+                          </div>';
+                }
+                
+?>
+                <div id="resultados"></div>
                <!-- Carga los datos ajax -->
                <div class='outer_div'></div>
                <!-- Carga los datos ajax -->
