@@ -9,7 +9,8 @@
     $fecha_log = date('Y-m-d H:i:s');
     //obtengo usuario
      $usuario_log=$_SESSION['user_id'];
-        
+     
+     $codigo_log = $_POST['codigo'];
     
     //obtenemos el archivo .csv
     $tipo = $_FILES['archivo']['type'];
@@ -37,7 +38,7 @@
             
             
             $sql_update = "INSERT INTO `clientes`(`nombre_cliente`, `documento_cliente`, `telefono_cliente`, `email_cliente`, `direccion_cliente`, `status_cliente`, `date_added`, `codigo`, `saldo_cliente`, `empresa_cliente`, `fec_consumo`, `menu_cliente`,`id_carga`) 
-            VALUES ('$nombre_cliente','$documento_cliente','$telefono_cliente','$email_cliente','','','$date_added','','0','','$fec_consumo','$menu_cliente','0')";
+            VALUES ('$nombre_cliente','$documento_cliente','$telefono_cliente','$email_cliente','','','$date_added','','0','','$fec_consumo','$menu_cliente','$codigo_log')";
 
             $query_new_insert = mysqli_query($con,$sql_update);
             if ($query_new_insert){

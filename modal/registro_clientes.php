@@ -26,12 +26,22 @@
 				  <input type="text" class="form-control" id="documento_cliente" name="documento_cliente" required>
 				</div>
 			  </div>
-			  <div class="form-group">
-				<label for="menu_cliente" class="col-sm-3 control-label">Menú</label>
-				<div class="col-sm-8">
-				  <input type="text" class="form-control" id="menu_cliente" name="menu_cliente" required>
-				</div>
-			  </div>
+
+
+				<div class="form-group">
+				<label for="menu_cliente" class="col-sm-3 control-label">Opción</label>
+					<div class="col-sm-8">
+					<select class="form-control" id="menu_cliente" name="menu_cliente" required>
+						<option value="" selected>-- Selecciona opción --</option>
+						<option value="Opcion1">Opción1</option>
+						<option value="Opcion2">Opción2</option>
+						<option value="Dieta">Dieta</option>
+						<option value="Vegetariano">Vegetariano</option>
+
+						</select>
+					</div>
+					</div>	
+
 				<div class="form-group">			  
 			  <label for="fecha_consumo" class="col-sm-3 control-label">Fecha a Consumir</label>
 				<div class="col-sm-8">

@@ -43,7 +43,7 @@
             <div class="form-group">
                 <label for="codigo" class="col-sm-3 control-label">Código Carga</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="codigo" value="<?php echo $codigo; ?>" readonly required>
+                  <input type="text" class="form-control" name="codigo" id="codigo" value="<?php echo $codigo; ?>" readonly required>
                 </div>
               </div>
 

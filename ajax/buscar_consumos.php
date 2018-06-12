@@ -89,9 +89,11 @@
 					<th>Contador</th>
 					<th>Nombre</th>
 					<th>Cedula</th>
-					<th>Menú</th>
+					<th>Opción</th>
 					<th>Fec. Cosumo</th>
+					<!--
 					<th class='text-right'>Acciones</th>
+					-->
 				</tr>
 				<?php
 				$contador = $numrows;
@@ -114,10 +116,13 @@
 						<td><?php echo $documento_cliente;?></td>
 						<td><?php echo $menu_cliente;?></td>
 						<td><?php echo $fec_real_consumo;?></td>
-						
+					<!--	
 						<td ><span class="pull-right">
 						
-						<a href="#" class='btn btn-default' title='Borrar cliente' onclick="eliminar('<?php echo $id_cliente; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
+						<a href="#" class='btn btn-default' title='Borrar cliente' onclick="eliminar('<?php echo $id_cliente; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span>
+						
+						</td>
+					-->	
 					</tr>
 					<?php
 					$contador = $contador -1;

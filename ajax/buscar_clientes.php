@@ -88,7 +88,7 @@
 
          $q = mysqli_real_escape_string($con,(strip_tags($_REQUEST['q'], ENT_QUOTES)));
 
-		 $aColumns = array('codigo', 'nombre_cliente','documento_cliente');//Columnas de busqueda
+		 $aColumns = array('id_carga', 'nombre_cliente','documento_cliente');//Columnas de busqueda
 
 		 $sTable = "clientes cli";
 
@@ -178,6 +178,8 @@
 
 					<th>Estado</th>
 
+					<th>IdCarga</th>
+
 					<th class='text-right'>Acciones</th>
 
 					
@@ -198,6 +200,7 @@
 						$menu_cliente=$row['menu_cliente'];
 						$fecha_consumo=$row['fecha_consumo'];
 						$a_consumir=$row['fec_consumo'];
+						$id_carga=$row['id_carga'];
 						
 					?>
 
@@ -224,6 +227,7 @@
 						<td><?php echo $a_consumir;?></td>
 						<td><?php echo $fecha_consumo;?></td>
 						<td><span class="label <?php echo $label_class;?>"><?php echo $estado; ?></span></td>
+						<td><?php echo $id_carga;?></td>
 						
 						
 

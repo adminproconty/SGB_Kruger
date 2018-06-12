@@ -38,6 +38,7 @@
 					if (window.print) {
 						window.print();
 						window.location.href = "../../facturas.php"
+						window.close();
 					} else {
 						alert("La función de impresion no esta soportada por su navegador.");
 					}
@@ -48,7 +49,7 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1">Buen Provecho!!</FONT>
+					<FONT FACE="Arial" SIZE="1">En Kruger tu importas!</FONT>
 					</td>
 				</tr>
 				<tr>

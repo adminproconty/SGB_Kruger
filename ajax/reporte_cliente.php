@@ -29,46 +29,33 @@
    
    	if($_GET['id_cliente'] != ''){
    			$count_query   = mysqli_query($con, "
-   				SELECT count(fac.`id_cliente`) as numrows, fac.`id_cliente`, 
-				   cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`, sum(fac. `total_venta`) as total_venta,
-				   (select user_name from users us where us.user_id = fac.id_vendedor) as vendedor, fac.numero_factura
-   				FROM `facturas` as fac
-   				JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
-              		WHERE fac.`id_cliente` = ".$_GET['id_cliente']."
-              		AND fac.`fecha_factura` >= '".$_GET['inicio']." 00:00:00' 
-   				AND fac.`fecha_factura` <= '".$_GET['fin']." 23:59:59'
-   				GROUP BY fac.`id_cliente`, cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`
-   				
+			   SELECT COUNT(cli.id_cliente) as numrows
+			   FROM consumos_diarios co, clientes cli
+			   WHERE co.id_cliente = cli.id_cliente
+			 AND co.fecha_consumo >= '".$_GET['inicio']." 00:00:00' 
+				AND co.fecha_consumo <= '".$_GET['fin']." 23:59:59'	
    			");
    		
-   			$sql="SELECT fac.`id_cliente`, cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`, sum(fac. `total_venta`) as total_venta,
-						(select user_name from users us where us.user_id = fac.id_vendedor) as vendedor, fac.numero_factura
-                  	FROM `facturas` as fac
-                  	JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
-                  	WHERE fac.`id_cliente` = ".$_GET['id_cliente']."
-                  	AND fac.`fecha_factura` >= '".$_GET['inicio']." 00:00:00' 
-   				AND fac.`fecha_factura` <= '".$_GET['fin']." 23:59:59'
-   				GROUP BY fac.`id_cliente`, cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`";
+   			$sql="SELECT *
+			   FROM consumos_diarios co, clientes cli
+			   WHERE co.id_cliente = cli.id_cliente
+			 AND co.fecha_consumo >= '".$_GET['inicio']." 00:00:00' 
+				AND co.fecha_consumo <= '".$_GET['fin']." 23:59:59'";
    				
    	}else{
    		$count_query   = mysqli_query($con, "
-   				SELECT count(fac.`id_cliente`) as numrows, fac.`id_cliente`, 
-				   cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`, sum(fac. `total_venta`) as total_venta,
-				   (select user_name from users us where us.user_id = fac.id_vendedor) as vendedor, fac.numero_factura
-   				FROM `facturas` as fac
-   				JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
-              		WHERE fac.`fecha_factura` >= '".$_GET['inicio']." 00:00:00' 
-   				AND fac.`fecha_factura` <= '".$_GET['fin']." 23:59:59'
-   				GROUP BY fac.`id_cliente`, cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`
-   			");
+		   SELECT COUNT(cli.id_cliente) as numrows
+		   FROM consumos_diarios co, clientes cli
+		   WHERE co.id_cliente = cli.id_cliente
+		 AND co.fecha_consumo >= '".$_GET['inicio']." 00:00:00' 
+			AND co.fecha_consumo <= '".$_GET['fin']." 23:59:59'");
    		
-   			$sql="SELECT fac.`id_cliente`, cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`, sum(fac. `total_venta`) as total_venta,
-			   		(select user_name from users us where us.user_id = fac.id_vendedor) as vendedor, fac.numero_factura
-                  	FROM `facturas` as fac
-                  	JOIN `clientes` as cli ON (fac.`id_cliente` = cli.`id_cliente`)
-                  	WHERE fac.`fecha_factura` >= '".$_GET['inicio']." 00:00:00' 
-   				AND fac.`fecha_factura` <= '".$_GET['fin']." 23:59:59'
-   				GROUP BY fac.`id_cliente`, cli.`nombre_cliente`, cli.`documento_cliente`, cli.`empresa_cliente`";
+   			$sql="SELECT *
+                  	FROM consumos_diarios co, clientes cli
+                  	WHERE co.id_cliente = cli.id_cliente
+					AND co.fecha_consumo >= '".$_GET['inicio']." 00:00:00' 
+   					AND co.fecha_consumo <= '".$_GET['fin']." 23:59:59'
+   				";
    	}	
    
    
@@ -108,37 +95,35 @@
 	  	 <th>Id</th>
 		 <th>Documento Cliente</th>
          <th>Nombre Cliente</th>
-         <th>Empresa</th>
-		 <th>Vendedor</th>
-         <th class="text-center">SubTotal Venta</th>
+         <th>Opción</th>
+		 <th>FechaConsumo</th>
+         
       </tr>
       <?php
          while ($row=mysqli_fetch_array($query)){
          
-				$numero= $row['numero_factura']; 
+				
 
 			//  $fecha= date('d/m/Y', strtotime($row['fecha_factura']));    
 
-				$documento=$row['documento_cliente'];
+			$id_cliente=$row['id_cliente'];
+				
+			$documento=$row['documento_cliente'];
 
          		$nombre=$row['nombre_cliente'];
          
-         		$empresa_cliente=$row['empresa_cliente'];
+         		$menu_cliente=$row['menu_cliente'];
          
-				$total=number_format($row['total_venta'],2,'.','');
-				 
-				$subtotal=number_format($total/1.12,2,'.','');
-         		
-         		$vendedor=$row['vendedor'];
+				 $fecha_consumo=$row['fecha_consumo'];
          
          	?>
       <tr>
-	  	 <td><?php echo $numero; ?></td>
+	  	 <td><?php echo $id_cliente; ?></td>
 		 <td><?php echo strval($documento); ?></td>
          <td><?php echo $nombre; ?></td>
-         <td><?php echo $empresa_cliente; ?></td>
-		 <td><?php echo $vendedor; ?></td>
-         <td class="text-center">$<?php echo str_replace(".",",",$subtotal);?></td>
+         <td><?php echo $menu_cliente; ?></td>
+		 <td><?php echo $fecha_consumo; ?></td>
+
       </tr>
       <?php
          }

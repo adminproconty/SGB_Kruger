@@ -16,7 +16,7 @@ function init() {
 
 //MUESTRO OCULTO OPCIONES
 function showGetCliente() {
-    $( "#form_busq_cliente" ).show( "slow" );
+    $( "#form_busq_cliente" ).hide( "slow" );
     $( "#form_busq_producto" ).hide( "slow" );
     $( "#form_busq_fechas" ).show( "slow" );
 }
@@ -153,6 +153,7 @@ $(function() {
 
 //CARGO TABLA CON DATOS DE CLIENTE
 function getClientes(tipo) {
+    
     localStorage.setItem('tipo_exportar', 'cliente');
     var url = '';
     var id_cliente= $("#id_cliente").val();

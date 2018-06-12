@@ -48,10 +48,8 @@
 					<div class="col-md-4">
                         <select class="form-control" id="select_reporte">
 					        <option value="">-- Selecciona tipo de reporte --</option>
-							<option value="cierre">Cierre de Caja</option>
-					        <option value="cliente">Ventas Agrupadas por Cliente</option>
-							<option value="detalle">Ventas Detalladas por Cliente</option>
-					        <option value="producto">Productos Vendidos</option> 
+							<option value="cliente">Consumos</option>
+					        
 				        </select>
 					</div>
 							
