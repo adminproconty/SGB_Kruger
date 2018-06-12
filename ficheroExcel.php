@@ -4,8 +4,6 @@ header("Content-Disposition: filename=Reporte.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-$desde = $_POST['inicio'];
-$hasta = $_POST['fin'];
 if ($_POST['nombre_reporte'] == "cliente"){
     $nombre_reporte = "REPORTE DE CONSUMOS";
 } else if($_POST['nombre_reporte'] == "producto"){

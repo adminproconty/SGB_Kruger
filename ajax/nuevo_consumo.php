@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     date_default_timezone_set('America/Bogota');
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
@@ -39,7 +39,7 @@
 ?>
                                 <script languaje="javascript">
                                    var id_cliente = <?php echo $id_cliente; ?>;
-                                   window.open('./pdf/documentos/ver_factura.php?id_cliente='+id_cliente,'Factura','','1024','768','true');
+                                   window.open('./pdf/documentos/ver_factura.php?id_cliente='+id_cliente,'Factura','width=200,height=100');
                                 </script>
 <?php
                             
