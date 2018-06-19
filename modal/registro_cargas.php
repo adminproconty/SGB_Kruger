@@ -32,10 +32,12 @@
                 $buat_id   = str_pad($codigo, 6, "0", STR_PAD_LEFT);
                 $codigo = "C$buat_id";
                 ?>
-            <!--
+            
             <form class="form-horizontal" method="post" id="guardar_carga" name="guardar_carga">
-						-->
+						
+						<!--
 						<form action="ajax/nueva_carga.php?act=insert" method='post' enctype="multipart/form-data" class="form-horizontal">
+						-->	
 							<div id="resultados_ajax"></div>
 		  
             
@@ -50,7 +52,7 @@
 				<div class="form-group">
                     <label for="archivo" class="col-sm-3 control-label">Seleccionar Archivo</label>
 					<div class="col-sm-8">
-						   <input class="form-control" id="archivo" accept=".csv" name="archivo" type="file" /> 
+						   <input required class="form-control" id="archivo" accept=".csv" name="archivo" type="file" /> 
 						   <input class="form-control" name="MAX_FILE_SIZE" type="hidden" value="20000" /> 
 				
 					</div>
@@ -60,8 +62,8 @@
 			
 		  </div>
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-			<button type="submit" class="btn btn-primary" id="guardar_carga">Cargar</button>
+			<button onclick="window.location.reload()" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+			<button type="submit" class="btn btn-primary" id="guardar_datos">Cargar</button>
 		  </div>
 		  </form>
 		</div>

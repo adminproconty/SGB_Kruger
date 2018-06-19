@@ -114,7 +114,7 @@
 
 		}
 
-		$sWhere.=" order by nombre_cliente";
+		$sWhere.=" order by id_cliente DESC";
 
 		include 'pagination.php'; //include pagination file
 

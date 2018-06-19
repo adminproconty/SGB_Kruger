@@ -42,23 +42,70 @@
 
             $query_new_insert = mysqli_query($con,$sql_update);
             if ($query_new_insert){
-                $id_alerta = 1;
-            } else{
-                $id_alerta = 2;
+                $messages = "Carga ingresada satisfactoriamente.";
                 
-            }
+			} else{
+				$errors = "Lo siento algo ha salido mal intenta nuevamente.".mysqli_error($con);
+			}
             
         //FIN CARGA
         } //cerramos condición
         $i++;
     }
-        if($id_alerta == 1){
-            $codigo_log = $_POST['codigo'];
-            $registros_log = $i - 1;
-            $sql_log = "INSERT INTO cargas(codigo,usuario,fecha,registros) 
-            VALUES('$codigo_log','$usuario_log','$fecha_log',$registros_log)";
-            $query_new_insert = mysqli_query($con,$sql_log);
+    if (isset($errors)){
+
+			
+
+        ?>
+
+        <div class="alert alert-danger" role="alert">
+
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                <strong>Error!</strong> 
+
+                <?php
+
+                    
+                            echo $errors;
+
+
+                    ?>
+
+        </div>
+
+        <?php
+
         }
-        echo "<script language=Javascript> location.href=\"../cargas.php?alert=".$id_alerta."\"; </script>"; 
+
+        if (isset($messages)){
+
+            
+
+            ?>
+
+            <div class="alert alert-success" role="alert">
+
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                    <strong>¡Bien hecho!</strong>
+
+                    <?php
+
+                                $codigo_log = $_POST['codigo'];
+                                $registros_log = $i - 1;
+                                $sql_log = "INSERT INTO cargas(codigo,usuario,fecha,registros) 
+                                VALUES('$codigo_log','$usuario_log','$fecha_log',$registros_log)";
+                                $query_new_insert = mysqli_query($con,$sql_log);
+                                echo $messages;
+
+
+                        ?>
+
+            </div>
+
+            <?php
+
+        }
         
 ?>

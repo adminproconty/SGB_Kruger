@@ -8,11 +8,29 @@
 
 	if (isset($_GET['id'])){
 		$id_carga=intval($_GET['id']);
-        $query=mysqli_query($con, "select * from clientes cli, consumos_diarios co 
-        where cli.id_cliente = co.id_cliente and cli.id_carga='".$id_carga."'");
+
+		//OBTENGO CODIGO DE CARGA
+		$query_id = mysqli_query($con, "SELECT RIGHT(codigo,6) as codigo FROM cargas
+                                                    ORDER BY codigo DESC LIMIT 1")
+                                                    or die('error '.mysqli_error($mysqli));
+
+                $count = mysqli_num_rows($query_id);
+
+                if ($count <> 0) {
+                
+                    $data_id = mysqli_fetch_assoc($query_id);
+                    $codigo    = $data_id['codigo'];
+                } 
+				$buat_id   = str_pad($codigo, 6, "0", STR_PAD_LEFT);
+				$codigo = "C$buat_id";
+				
+		$query=mysqli_query($con, "select * 
+			from clientes cli, consumos_diarios con where cli.id_cliente = con.id_cliente
+			and cli.id_carga ='".$codigo."'");
+
 		$count=mysqli_num_rows($query);
 		if ($count==0){
-			if ($delete1=mysqli_query($con,"DELETE FROM cargas WHERE id_carga='".$id_carga."'") and $delete2=mysqli_query($con, "delete from clientes where id_carga='".$id_carga."'")){
+			if ($delete1=mysqli_query($con,"DELETE FROM cargas WHERE id_carga='".$id_carga."'") and $delete2=mysqli_query($con, "delete from clientes where id_carga='".$codigo."'")){
 
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
@@ -54,7 +72,7 @@
 			$sWhere .= ')';
 		}
 
-		$sWhere.=" order by codigo";
+		$sWhere.=" order by codigo DESC";
 		include 'pagination.php'; //include pagination file
 		//pagination variables
 
@@ -125,7 +143,7 @@
 <!--
 					<a href="#" class='btn btn-default' title='Editar cliente' onclick="obtener_datos('<?php echo $id_carga;?>');" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-edit"></i></a> 
 -->
-					<a href="#" class='btn btn-default' title='Borrar cliente' onclick="eliminar('<?php echo $id_carga; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
+					<a href="#" class='btn btn-default' title='Borrar Carga' onclick="eliminar('<?php echo $id_carga; ?>')"><i class="glyphicon glyphicon-trash"></i> </a></span></td>
 
 						
 <?php

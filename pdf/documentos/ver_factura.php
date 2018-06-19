@@ -39,6 +39,7 @@
 						window.print();
 						window.location.href = "../../facturas.php"
 						window.close();
+						location.reload();
 					} else {
 						alert("La función de impresion no esta soportada por su navegador.");
 					}

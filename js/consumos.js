@@ -17,7 +17,7 @@ function load(page){
             
         }
     })
-   
+
 }
 
 
