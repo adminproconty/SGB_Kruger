@@ -49,22 +49,38 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
+<<<<<<< HEAD
 					<FONT FACE="Arial" SIZE="3">En Kruger tu importas!</FONT>
+=======
+					<FONT FACE="Arial" SIZE="2">En Kruger tu importas!</FONT>
+>>>>>>> aa4c20da34da412b5d6ff8241ec8863e96f736a2
 					</td>
 				</tr>
 				<tr>
 					<td>
+<<<<<<< HEAD
 					<FONT FACE="Arial" SIZE="3"><?php echo $nombre_cliente ?></FONT>
+=======
+					<FONT FACE="Arial" SIZE="2"><?php echo $nombre_cliente ?></FONT>
+>>>>>>> aa4c20da34da412b5d6ff8241ec8863e96f736a2
 					</td>
 				</tr>
 				<tr>
 					<td>
+<<<<<<< HEAD
 					<FONT FACE="Arial" SIZE="3">Menú: <?php echo $menu_cliente ?></FONT>
+=======
+					<FONT FACE="Arial" SIZE="2">Menú: <?php echo $menu_cliente ?></FONT>
+>>>>>>> aa4c20da34da412b5d6ff8241ec8863e96f736a2
 					</td>
 				</tr>
 				<tr>
 					<td>
+<<<<<<< HEAD
 					<FONT FACE="Arial" SIZE="3"><?php echo $fecha_consumo ?></FONT>
+=======
+					<FONT FACE="Arial" SIZE="2"><?php echo $fecha_consumo ?></FONT>
+>>>>>>> aa4c20da34da412b5d6ff8241ec8863e96f736a2
 					</td>
 				</tr>
 
