@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	document.getElementById("#q").focus();
     load(1);
 });
 

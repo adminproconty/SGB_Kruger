@@ -12,7 +12,8 @@
         where cli.id_cliente = co.id_cliente and cli.id_carga='".$id_carga."'");
 		$count=mysqli_num_rows($query);
 		if ($count==0){
-			if ($delete1=mysqli_query($con,"DELETE FROM cargas WHERE id_carga='".$id_carga."'")){
+			if ($delete1=mysqli_query($con,"DELETE FROM cargas WHERE id_carga='".$id_carga."'") and $delete2=mysqli_query($con, "delete from clientes where id_carga='".$id_carga."'")){
+
 			?>
 			<div class="alert alert-success alert-dismissible" role="alert">
 			  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 	session_start();
 	if (!isset($_SESSION['user_login_status']) AND $_SESSION['user_login_status'] != 1) {
@@ -49,22 +49,22 @@
 			<table style="width: 100%;">
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1">En Kruger tu importas!</FONT>
+					<FONT FACE="Arial" SIZE="3">En Kruger tu importas!</FONT>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1"><?php echo $nombre_cliente ?></FONT>
+					<FONT FACE="Arial" SIZE="3"><?php echo $nombre_cliente ?></FONT>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1">Menú: <?php echo $menu_cliente ?></FONT>
+					<FONT FACE="Arial" SIZE="3">Menú: <?php echo $menu_cliente ?></FONT>
 					</td>
 				</tr>
 				<tr>
 					<td>
-					<FONT FACE="Arial" SIZE="1"><?php echo $fecha_consumo ?></FONT>
+					<FONT FACE="Arial" SIZE="3"><?php echo $fecha_consumo ?></FONT>
 					</td>
 				</tr>
 

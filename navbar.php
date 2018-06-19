@@ -1,4 +1,4 @@
-	<?php
+﻿	<?php
 		if (isset($title))
 		{
 			$user_id = $_SESSION['user_id'];
@@ -67,13 +67,26 @@
 			<li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Clientes</a></li>
 			<li class="<?php echo $active_cargas;?>"><a href="cargas.php"><i class='glyphicon glyphicon-cloud-upload'></i> Cargas</a></li>
 			<li class="<?php echo $active_reportes;?>"><a href="reportes.php"><i  class='glyphicon glyphicon-paste'></i> Reportes</a></li>
-			<li class="<?php echo $active_usuarios;?>"><a href="usuarios.php"><i  class='glyphicon glyphicon-lock'></i> Usuarios</a></li>
 			
-			<?php
+			
+		<?php
 
-} 
+			} elseif ($row2['perfil'] == "Operaciones") { 
 
-?>
+
+		?>
+
+			
+			<li class="<?php echo $active_clientes;?>"><a href="clientes.php"><i class='glyphicon glyphicon-user'></i> Clientes</a></li>
+			<li class="<?php echo $active_cargas;?>"><a href="cargas.php"><i class='glyphicon glyphicon-cloud-upload'></i> Cargas</a></li>
+			
+		<?php
+
+			} 
+
+
+		?>	
+		
 
        </ul>
 

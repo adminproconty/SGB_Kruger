@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     date_default_timezone_set('America/Bogota');
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 	/*Inicia validacion del lado del servidor*/
@@ -16,19 +16,38 @@
 
                 $documento=mysqli_real_escape_string($con,(strip_tags($_POST["q"],ENT_QUOTES)));
                 $fecha_valida=date('Y-m-d');
+
+
+		//VALIDA SI ES CODIGO MAESTRO
+		   $valida_consumo = 0;
+                   $sql_valida1=mysqli_query($con,"SELECT count(*) as numrows2, id_cliente FROM  codigos_maestros, clientes where codigo_maestro = $documento and documento_cliente = codigo_maestro");
+                   $row2= mysqli_fetch_array($sql_valida1);
+                   $numrows2 = $row2['numrows2'];
+		   if ($numrows2 == 0){
+			$valida_consumo = 1;
+			
+		   } else {
+			$numrows =0;
+			$id_cliente = $row2['id_cliente'];
+		   }
                 
+	      if ($valida_consumo == 1){
                 //VALIDA SI EXISTE REGISTRO PARA QUE PUEDA COMER
                 $sql_existe=mysqli_query($con,"SELECT id_cliente FROM  clientes where documento_cliente = $documento and date_format(fec_consumo,'%Y-%m-%d') = '$fecha_valida'");
                 $row_valida= mysqli_fetch_array($sql_existe);
                 $id_cliente = $row_valida['id_cliente'];
+	      }
                 
                 if ($id_cliente <= 0){
                     $errors []= "No existe un registro de hoy para el Id: $documento";     
                 } else {
+
+		   if ($valida_consumo == 1){
                     //VALIDA SI YA REGISTRO ANTES
                     $sql_valida=mysqli_query($con,"SELECT count(*) as numrows FROM  consumos_diarios where id_cliente = $id_cliente and estado = 1");
                     $row= mysqli_fetch_array($sql_valida);
                     $numrows = $row['numrows'];
+		   }
 
                     if ($numrows == 0){
                         $fecha_hoy=date('Y-m-d H:i:s');
@@ -39,7 +58,7 @@
 ?>
                                 <script languaje="javascript">
                                    var id_cliente = <?php echo $id_cliente; ?>;
-                                   window.open('./pdf/documentos/ver_factura.php?id_cliente='+id_cliente,'Factura','','1024','768','true');
+                                   window.open('./pdf/documentos/ver_factura.php?id_cliente='+id_cliente,'Factura','width=200,height=100');
                                 </script>
 <?php
                             

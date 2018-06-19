@@ -1,4 +1,4 @@
-	<?php
+﻿	<?php
 		if (isset($con))
 		{
 	?>
@@ -47,6 +47,7 @@
 						<option value="Administrador">Administrador</option>
 						<option value="Ventas">Ventas</option>
 						<option value="Supervisor">Supervisor</option>
+						<option value="Operaciones">Operaciones</option>
 					   </select>
 					</div>   
 			  </div>

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 	include('is_logged.php');//Archivo verifica que el usario que intenta acceder a la URL esta logueado
 
@@ -36,7 +36,7 @@
 
 		$nombre=mysqli_real_escape_string($con,(strip_tags($_POST["mod_nombre"],ENT_QUOTES)));
 		$documento=mysqli_real_escape_string($con,(strip_tags($_POST["mod_documento"],ENT_QUOTES)));
-		$estado=mysqli_real_escape_string($con,(strip_tags($_POST["mod_estado"],ENT_QUOTES)));
+		
 		$id_cliente=intval($_POST['mod_id']);
 		$menu=mysqli_real_escape_string($con,(strip_tags($_POST["mod_menu"],ENT_QUOTES)));
 		$fecha=mysqli_real_escape_string($con,(strip_tags($_POST["mod_fecha"],ENT_QUOTES)));

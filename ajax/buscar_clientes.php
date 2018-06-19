@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 
@@ -143,8 +143,8 @@
 		//main query to fetch the data
 
 		$sql="SELECT cli.*, 
-		(select co.estado from consumos_diarios co where co.id_cliente = cli.id_cliente and co.estado = 1 ) as estado,
-		(select co.fecha_consumo from consumos_diarios co where co.id_cliente = cli.id_cliente and co. estado = 1) as fecha_consumo
+		(select MAX(co.estado) from consumos_diarios co where co.id_cliente = cli.id_cliente and co.estado = 1 ) as estado,
+		(select MAX(co.fecha_consumo) from consumos_diarios co where co.id_cliente = cli.id_cliente and co. estado = 1) as fecha_consumo
 	   FROM  $sTable $sWhere LIMIT $offset,$per_page";
 
 

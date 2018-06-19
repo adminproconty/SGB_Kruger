@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // checking for minimum PHP version
 if (version_compare(PHP_VERSION, '5.3.7', '<')) {
     exit("Sorry, Simple PHP Login does not run on a PHP version smaller than 5.3.7 !");
@@ -52,7 +52,7 @@ if ($login->isUserLoggedIn() == true) {
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
   <title>SGB | Login</title>
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet"  href="css/bootstrap.min.css"  integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet"  href="css/bootstrap.min.css">
   <!-- CSS  -->
    <link href="css/login.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
