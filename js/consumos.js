@@ -1,9 +1,10 @@
 $(document).ready(function(){
-	document.getElementById("#q").focus();
+	document.getElementById("q").focus();
     load(1);
 });
 
 function load(page){
+    
     var q= $("#q").val();
     $("#loader").fadeIn('slow');
     $.ajax({
@@ -49,6 +50,7 @@ function load(page){
 
 $( "#consumos" ).submit(function( event ) {
     var documento = $("#q").val();
+    documento = documento.trim();
     var parametros = $(this).serialize();
     $.ajax({
         type: "POST",
@@ -63,7 +65,9 @@ $( "#consumos" ).submit(function( event ) {
         load(1);
     }
     });
-    setTimeout("remueve(0)", 3000 );
+    
+    setTimeout("location.reload()", 2000 );
+    setTimeout("remueve(0)", 2000 );
     $("#q").val("");
     event.preventDefault();
 })
