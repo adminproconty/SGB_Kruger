@@ -19,7 +19,22 @@
 	$id_cliente=intval($_GET['id_cliente']);
 	//Fin de variables por GET
 	
-	$sql=mysqli_query($con,"select * from consumos_diarios a, clientes b where a.id_cliente = b.id_cliente and a.id_cliente='".$id_cliente."'");
+	
+	$sql=mysqli_query($con,"SELECT b.id_cliente as id_cliente, a.nombre_cliente as nombre_cliente, a.documento_cliente as documento_cliente
+							, a.menu_cliente as menu_cliente, b.fecha_consumo as fecha_consumo 
+						FROM  consumos_diarios b, clientes a 
+						where a.id_cliente = '".$id_cliente."'
+						and a.id_cliente  
+						and b.estado = 1
+						and b.user_cambio = 'NORMAL'
+						UNION
+						SELECT co.id_cliente as id_cliente, cod.nombre_maestro as nombre_cliente, cod.codigo_maestro as documento_cliente
+						, '' as menu_cliente, co.fecha_consumo as fecha_consumo 
+						from  codigos_maestros cod, consumos_diarios co 
+						where co.id_cliente = cod.id_codigo
+						and co.estado = 1
+						and co.user_cambio = 'MAESTRO' 
+						and co.id_cliente = '".$id_cliente."'");
 	while ($row=mysqli_fetch_array($sql))
 	{
 		$nombre_cliente=$row['nombre_cliente'];

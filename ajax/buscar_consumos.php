@@ -78,7 +78,7 @@
 		
 		//main query to fetch the data
 		
-		$sql="SELECT b.id_cliente, a.nombre_cliente, a.documento_cliente, a.menu_cliente, b.fecha_consumo FROM  consumos_diarios b, clientes a where a.id_cliente = b.id_cliente and date_format(b.fecha_consumo,'%Y-%m-%d') = '$fecha_hoy'  and b.estado = 1 ORDER BY b.fecha_consumo DESC LIMIT $offset,$per_page";
+		
 		$sql="SELECT b.id_cliente, a.nombre_cliente, a.documento_cliente, a.menu_cliente, b.fecha_consumo 
 				FROM  consumos_diarios b, clientes a 
 				where a.id_cliente = b.id_cliente 
