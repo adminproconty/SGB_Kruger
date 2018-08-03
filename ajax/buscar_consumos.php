@@ -79,6 +79,21 @@
 		//main query to fetch the data
 		
 		$sql="SELECT b.id_cliente, a.nombre_cliente, a.documento_cliente, a.menu_cliente, b.fecha_consumo FROM  consumos_diarios b, clientes a where a.id_cliente = b.id_cliente and date_format(b.fecha_consumo,'%Y-%m-%d') = '$fecha_hoy'  and b.estado = 1 ORDER BY b.fecha_consumo DESC LIMIT $offset,$per_page";
+		$sql="SELECT b.id_cliente, a.nombre_cliente, a.documento_cliente, a.menu_cliente, b.fecha_consumo 
+				FROM  consumos_diarios b, clientes a 
+				where a.id_cliente = b.id_cliente 
+				and date_format(b.fecha_consumo,'%Y-%m-%d') = '$fecha_hoy'  
+				and b.estado = 1
+				and b.user_cambio = 'NORMAL'
+				UNION
+				SELECT co.id_cliente, cod.nombre_maestro, cod.codigo_maestro, '', co.fecha_consumo 
+				from  codigos_maestros cod, consumos_diarios co 
+				where co.id_cliente = cod.id_codigo
+				and co.estado = 1
+				and co.user_cambio = 'MAESTRO' 
+				and date_format(co.fecha_consumo,'%Y-%m-%d') = '$fecha_hoy'
+		
+		ORDER BY fecha_consumo DESC LIMIT $offset,$per_page";
 		$query = mysqli_query($con, $sql);
 		//loop through fetched data
 		if ($numrows>0){

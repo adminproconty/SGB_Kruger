@@ -14,15 +14,19 @@
 			//VALIDA SI ES CODIGO MAESTRO
    
    			$valida_consumo = 0;
-			$sql_valida1=mysqli_query($con,"SELECT count(*) as esmaestro, id_cliente FROM  codigos_maestros, clientes where codigo_maestro = '$documento' and documento_cliente = codigo_maestro");
+			$marca_maestro = 'NORMAL';
+			$sql_valida1=mysqli_query($con,"SELECT * FROM  codigos_maestros where codigo_maestro = '$documento'");
 			$row2= mysqli_fetch_array($sql_valida1);
-			$esmaestro = $row2['esmaestro'];
-    		if ($esmaestro == 0){
+			$id_cliente = $row2['id_codigo'];
+			if ($id_cliente == ''){
    				$valida_consumo = 1; //VALIDA OTRAS REGLAS 
        		} else { 
 				$valida_consumo = 0; //NO VALIDA NADA Y REGISTRA CONSUMO
 				$puedecomer = 1;
-				$id_cliente = $row2['id_cliente'];
+				
+				$id_codigo = $row2['id_codigo'];
+				$nombre_maestro = $row2['nombre_maestro'];
+				$marca_maestro = 'MAESTRO';
     		}
 			
 			//SI NO ES COD MAESTRO VALIDA CONSUMO Y REGISTRO DEL DIA
@@ -46,7 +50,7 @@
     
             if ($puedecomer == 1){
                 $fecha_hoy=date('Y-m-d H:i:s');
-                $sql="INSERT INTO `consumos_diarios`(`id_cliente`, `fecha_consumo`, `estado`, `fecha_cambio`, `user_cambio`) VALUES ($id_cliente,'$fecha_hoy',1,'','')";
+                $sql="INSERT INTO `consumos_diarios`(`id_cliente`, `fecha_consumo`, `estado`, `fecha_cambio`, `user_cambio`) VALUES ($id_cliente,'$fecha_hoy',1,'','$marca_maestro')";
                 $query_new_insert = mysqli_query($con,$sql);
                 if ($query_new_insert){
 ?>
