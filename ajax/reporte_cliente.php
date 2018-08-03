@@ -39,7 +39,7 @@
 			FROM  consumos_diarios b, clientes a 
 			where a.id_cliente = b.id_cliente 
 			and b.fecha_consumo >= '".$_GET['inicio']." 00:00:00' 
-			and b.fecha_consumo <= '".$_GET['inicio']." 23:59:59'
+			and b.fecha_consumo <= '".$_GET['fin']." 23:59:59'
 			and b.estado = 1
 			and b.user_cambio = 'NORMAL'
 			UNION
@@ -50,7 +50,7 @@
 			and co.estado = 1
 			and co.user_cambio = 'MAESTRO' 
 			and co.fecha_consumo >= '".$_GET['inicio']." 00:00:00' 
-			and co.fecha_consumo <= '".$_GET['inicio']." 23:59:59'
+			and co.fecha_consumo <= '".$_GET['fin']." 23:59:59'
 		";
    		
    
