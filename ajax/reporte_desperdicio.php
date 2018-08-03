@@ -27,36 +27,31 @@
    
    	//Count the total number of row in your table*/
    
-   	if($_GET['id_cliente'] != ''){
-   			$count_query   = mysqli_query($con, "
-			   SELECT COUNT(cli.id_cliente) as numrows
-			   FROM clientes cli
-			   WHERE cli.fec_consumo = ''
-			 AND cli.date_added >= '".$_GET['inicio']." 00:00:00' 
-				AND cli.date_added <= '".$_GET['fin']." 23:59:59'	
-   			");
-   		
-   			$sql="SELECT *
-			   FROM clientes cli
-			   WHERE cli.fec_consumo = ''
-			 AND cli.date_added >= '".$_GET['inicio']." 00:00:00' 
-				AND cli.date_added <= '".$_GET['fin']." 23:59:59'";
-   				
-   	}else{
+   	
    		$count_query   = mysqli_query($con, "
 		   SELECT COUNT(cli.id_cliente) as numrows
 			   FROM clientes cli
-			   WHERE cli.fec_consumo = ''
+			   WHERE NOT EXISTS
+			   (
+			   SELECT  * 
+			   FROM consumos_diarios co
+			   WHERE cli.id_cliente = co.id_cliente
+			   )
 			 AND cli.date_added >= '".$_GET['inicio']." 00:00:00' 
 				AND cli.date_added <= '".$_GET['fin']." 23:59:59'");
    		
    			$sql="SELECT *
 			   FROM clientes cli
-			   WHERE cli.fec_consumo = ''
+			   WHERE NOT EXISTS
+			   (
+			   SELECT  * 
+			   FROM consumos_diarios co
+			   WHERE cli.id_cliente = co.id_cliente
+			   )
 			 AND cli.date_added >= '".$_GET['inicio']." 00:00:00' 
 				AND cli.date_added <= '".$_GET['fin']." 23:59:59'
    				";
-   	}	
+   		
    
    
    	$row= mysqli_fetch_array($count_query);
