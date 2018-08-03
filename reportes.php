@@ -49,7 +49,7 @@
                         <select class="form-control" id="select_reporte">
 					        <option value="">-- Selecciona tipo de reporte --</option>
 							<option value="cliente">Consumos</option>
-					        
+							<option value="desperdicio">No Consumidos</option>
 				        </select>
 					</div>
 							
@@ -61,7 +61,7 @@
 						<span id="loader"></span>
 					</div>
 				</div>
-
+<!--
                 <div class="for-group row" id="form_busq_producto">
                     <div class="col-md-4">
                         <label for="q" class="control-label" style="display: inline-block; width: 20%;">Producto:</label>
@@ -77,7 +77,7 @@
 					    <input id="id_cliente" type='hidden' name="id_cliente">
                     </div>
                 </div>
-
+-->
 				<div class="for-group row" id="form_busq_fechas">
                     <div class="col-md-4">
                         <label for="q" class="control-label" style="display: inline-block; width: 20%;">Desde:</label>

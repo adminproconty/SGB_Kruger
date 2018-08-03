@@ -8,34 +8,34 @@ $(document).ready(function(){
 });
 
 function init() {
-    $( "#form_busq_cliente" ).hide( "slow" );
-    $( "#form_busq_producto" ).hide( "slow" );
+//    $( "#form_busq_cliente" ).hide( "slow" );
+//    $( "#form_busq_producto" ).hide( "slow" );
     $( "#form_busq_fechas" ).hide( "slow" );
 
 }
 
 //MUESTRO OCULTO OPCIONES
 function showGetCliente() {
-    $( "#form_busq_cliente" ).hide( "slow" );
-    $( "#form_busq_producto" ).hide( "slow" );
+//    $( "#form_busq_cliente" ).hide( "slow" );
+//    $( "#form_busq_producto" ).hide( "slow" );
     $( "#form_busq_fechas" ).show( "slow" );
 }
 
 function showGetProducto() {
-    $( "#form_busq_cliente" ).hide( "slow" );
-    $( "#form_busq_producto" ).show( "slow" );
+//    $( "#form_busq_cliente" ).hide( "slow" );
+//    $( "#form_busq_producto" ).show( "slow" );
     $( "#form_busq_fechas" ).show( "slow" );
 }
 
 function showGetDetalle() {
-    $( "#form_busq_cliente" ).show( "slow" );
-    $( "#form_busq_producto" ).hide( "slow" );
+//    $( "#form_busq_cliente" ).show( "slow" );
+//    $( "#form_busq_producto" ).hide( "slow" );
     $( "#form_busq_fechas" ).show( "slow" );
 }
 
 function showGetCierre() {
-    $( "#form_busq_cliente" ).hide( "slow" );
-    $( "#form_busq_producto" ).hide( "slow" );
+//    $( "#form_busq_cliente" ).hide( "slow" );
+//    $( "#form_busq_producto" ).hide( "slow" );
     $( "#form_busq_fechas" ).show( "slow" );
 }
 
@@ -52,6 +52,10 @@ $( "#select_reporte" ).change(function() {
             showGetCliente();
             localStorage.setItem('tipo_exportar', 'cliente');
             getClientes(0);
+        } else if (opcion == 'desperdicio') {
+            showGetCliente();
+            localStorage.setItem('tipo_exportar', 'desperdicio');
+            getDesperdicio(0);
         } else if (opcion == 'producto') {
             showGetProducto();
             localStorage.setItem('tipo_exportar', 'producto');
@@ -81,6 +85,8 @@ $('#hasta').change(function(){
     var valida_repo = localStorage.getItem('tipo_exportar');
     if (valida_repo == 'cliente'){
         getClientes(1);
+    } else if (valida_repo == 'desperdicio'){
+        getDesperdicio(1);
     } else if (valida_repo == 'producto'){
         getProductos(1);
     } else if (valida_repo == 'cierre'){
@@ -97,6 +103,8 @@ $( "#exportar" ).click(function() {
     $("#nombre_reporte").val(valida_tipo);
     if (valida_tipo == 'cliente'){
         var formulario = $("#Exportar_Clientes").eq(0).clone();
+    } else if(valida_tipo == 'desperdicio'){
+        var formulario = $("#Exportar_Desperdicio").eq(0).clone();
     } else if(valida_tipo == 'producto'){
         var formulario = $("#Exportar_Productos").eq(0).clone();
     } else {
@@ -114,46 +122,8 @@ $( "#exportar" ).click(function() {
 });
 
 
-//FUNCIO DE AUTOCOMPLETAR NOMBRE Y PRODUCTO SEGUN REPORTE
-$(function() {
-	$("#nombre_cliente").autocomplete({
-        source: "./ajax/autocomplete/clientes.php",
-        minLength: 2,
-        select: function(event, ui) {
-            event.preventDefault();
-            $('#id_cliente').val(ui.item.id_cliente);
-            $('#nombre_cliente').val(ui.item.nombre_cliente);
-            $('#tel1').val(ui.item.telefono_cliente);
-            $('#mail').val(ui.item.email_cliente);
-            $('#saldo_cliente').val(ui.item.saldo_cliente);
-            
-            //PARA CLIENTES Y DETALLE CLIENTES
-            var valida_repo = localStorage.getItem('tipo_exportar');
-            if (valida_repo == 'cliente'){
-                getClientes(1);
-            } else {
-                getDetalle(1);
-            }
-        }
-    });
-    
-    $("#nombre_producto").autocomplete({
-        source: "./ajax/autocomplete/productos.php",
-        minLength: 2,
-        select: function(event, ui) {
-            event.preventDefault();
-            $('#id_producto').val(ui.item.id_producto);
-            $('#codigo_producto').val(ui.item.codigo_producto);
-            $('#nombre_producto').val(ui.item.nombre_producto);
-            getProductos(1);
-        }
-    });	
-						
-});	
-
 //CARGO TABLA CON DATOS DE CLIENTE
 function getClientes(tipo) {
-    
     localStorage.setItem('tipo_exportar', 'cliente');
     var url = '';
     var id_cliente= $("#id_cliente").val();
@@ -169,6 +139,37 @@ function getClientes(tipo) {
     }
 
     url = './ajax/reporte_cliente.php?action=ajax&id_cliente='+id_cliente+'&inicio='+inicio+'&fin='+fin;
+    $("#loader").fadeIn('slow');
+    $.ajax({
+        url: url,
+        beforeSend: function(objeto){
+            $('#loader').html('<img src="./img/ajax-loader.gif"> Cargando...');
+        },
+        success:function(data){
+            $(".outer_div").html(data).fadeIn('slow');
+            $('#loader').html('');
+        }
+    })
+}
+
+//CARGO TABLA CON DATOS DE DESPERDICIO
+function getDesperdicio(tipo) {
+    
+    localStorage.setItem('tipo_exportar', 'desperdicio');
+    var url = '';
+    var id_cliente= $("#id_cliente").val();
+    var inicio= $("#inicio").val();
+    var fin= $("#fin").val();
+    if(inicio == '') {
+        //inicio = new Date().toJSON().slice(0,10);
+        inicio = '2018-01-01';
+    }
+    if(fin == '') {
+        //fin = new Date().toJSON().slice(0,10);
+        fin = '3000-01-01';
+    }
+
+    url = './ajax/reporte_desperdicio.php?action=ajax&id_cliente='+id_cliente+'&inicio='+inicio+'&fin='+fin;
     $("#loader").fadeIn('slow');
     $.ajax({
         url: url,
