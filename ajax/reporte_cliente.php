@@ -41,7 +41,7 @@
 			and b.fecha_consumo >= '".$_GET['inicio']." 00:00:00' 
 			and b.fecha_consumo <= '".$_GET['fin']." 23:59:59'
 			and b.estado = 1
-			and b.user_cambio = 'NORMAL'
+			and b.user_cambio != 'MAESTRO'
 			UNION
 			SELECT co.id_cliente as id_cliente, cod.nombre_maestro as nombre_cliente, cod.codigo_maestro as documento_cliente
 			, '' as menu_cliente, co.fecha_consumo as fecha_consumo
