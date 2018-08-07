@@ -37,7 +37,9 @@
 				$row_valida= mysqli_fetch_array($sql_existe);
 				$id_cliente = $row_valida['id_cliente'];
 				$registra_consumo = $row_valida['comio'];
-				if ($registra_consumo == ''){ $registra_consumo = 0}
+				if ($registra_consumo == ''){ 
+					$registra_consumo = 0;
+				}
 			}
                
 			if ($id_cliente <= 0){
