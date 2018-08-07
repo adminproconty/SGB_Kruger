@@ -37,8 +37,8 @@
 			   FROM consumos_diarios co
 			   WHERE cli.id_cliente = co.id_cliente
 			   )
-			 AND cli.date_added >= '".$_GET['inicio']." 00:00:00' 
-				AND cli.date_added <= '".$_GET['fin']." 23:59:59'");
+			 AND cli.fec_consumo >= '".$_GET['inicio']." 00:00:00' 
+				AND cli.fec_consumo <= '".$_GET['fin']." 23:59:59'");
    		
    			$sql="SELECT *
 			   FROM clientes cli
@@ -48,8 +48,8 @@
 			   FROM consumos_diarios co
 			   WHERE cli.id_cliente = co.id_cliente
 			   )
-			 AND cli.date_added >= '".$_GET['inicio']." 00:00:00' 
-				AND cli.date_added <= '".$_GET['fin']." 23:59:59'
+			 AND cli.fec_consumo >= '".$_GET['inicio']." 00:00:00' 
+				AND cli.fec_consumo <= '".$_GET['fin']." 23:59:59'
    				";
    		
    
