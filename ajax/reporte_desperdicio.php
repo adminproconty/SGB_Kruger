@@ -109,7 +109,7 @@
          
          		$menu_cliente=$row['menu_cliente'];
          
-                 $fecha_consumo=$row['date_added'];
+                 $fecha_consumo=$row['fec_consumo'];
                  $id_carga=$row['id_carga'];
          
          	?>
